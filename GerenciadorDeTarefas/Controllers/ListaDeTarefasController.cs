@@ -26,8 +26,7 @@ namespace GerenciadorDeTarefas.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var lista = await _context.ListaDeTarefas.ToListAsync();
-           //_mapper.Map<List<ListaDeTarefaViewModel>>(lista);
+            var lista = await _context.ListaDeTarefas.ToListAsync();           
             return View(_mapper.Map<List<ListaDeTarefaViewModel>>(lista));
         }
 
@@ -44,6 +43,17 @@ namespace GerenciadorDeTarefas.Controllers
             await _context.ListaDeTarefas.AddAsync(lista);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Edit(int Id)
+        {
+            var tarefas = _context.ListaDeTarefas.Find(Id);
+            if(tarefas.Tarefas == null)
+            {
+                new List<Tarefa>();
+            }
+            
+            return View(_mapper.Map<ListaDeTarefaViewModel>(tarefas));
         }
     }
 }

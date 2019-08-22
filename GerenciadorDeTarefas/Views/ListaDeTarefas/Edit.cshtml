@@ -1,0 +1,23 @@
+﻿@model GerenciadorDeTarefas.Models.ViewModels.ListaDeTarefaViewModel
+
+@{
+    ViewData["Title"] = "Tarefas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<tbody>   
+    @foreach (var item in Model.Tarefas)
+    {
+        <tr>
+            <td> @item.Descricao </td>
+            <td> @item.Status </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Excluir</a>
+            </td>
+        </tr>
+    }
+</tbody>
+<p>
+    <a asp-action="Create" asp-controller="ListaDeTarefas" class="btn btn-primary">Nova Lista</a>
+</p>

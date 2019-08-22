@@ -13,8 +13,19 @@ namespace GerenciadorDeTarefas.Data
             : base(options)
         {
         }
-
         public DbSet<ListaDeTarefa> ListaDeTarefas { get; set; }
         public DbSet<Tarefa> Tarefas { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<ListaDeTarefa>().HasData(
+                new ListaDeTarefa
+                {
+                    Id = 1,
+                    Nome = "Meu Dia",
+                    Tarefas = new List<Tarefa>()
+                });            
+        }
     }
 }

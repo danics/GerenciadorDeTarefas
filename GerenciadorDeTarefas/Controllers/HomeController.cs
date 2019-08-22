@@ -5,13 +5,20 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using GerenciadorDeTarefas.Models;
+using GerenciadorDeTarefas.Data;
 
 namespace GerenciadorDeTarefas.Controllers
-{
-    public class HomeController : Controller
+{     
+    public class HomeController : Controller    
     {
+        private readonly ApplicationDbContext _context;
+        public HomeController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
         public IActionResult Index()
         {
+            ViewData["listas"] = _context.ListaDeTarefas.ToList();
             return View();
         }
 
