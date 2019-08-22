@@ -45,13 +45,13 @@ namespace GerenciadorDeTarefas.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult Edit(int Id)
-        {
-            var tarefas = _context.ListaDeTarefas.Find(Id);
+        public ActionResult Edit(int Id)
+        {            
+            var tarefas = _context.ListaDeTarefas.Find(Id);           
             if(tarefas.Tarefas == null)
             {
-                new List<Tarefa>();
-            }
+                tarefas.Tarefas = new List<Tarefa>();               
+            }    
             
             return View(_mapper.Map<ListaDeTarefaViewModel>(tarefas));
         }
