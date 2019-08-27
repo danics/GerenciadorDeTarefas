@@ -25,7 +25,7 @@ namespace GerenciadorDeTarefas.Data
                     Id = 1,
                     Nome = "Meu Dia",
                     Tarefas = new List<Tarefa>()
-                });            
+        });            
         }
     }
 }

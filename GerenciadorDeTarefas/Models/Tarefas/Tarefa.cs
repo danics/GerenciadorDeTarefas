@@ -8,13 +8,14 @@ using System.Threading.Tasks;
 namespace GerenciadorDeTarefas.Models
 {
     public class Tarefa
-    {
-        public int Id { get; set; }
+    {        
+        public int Id { get; private set; }
         public string Descricao { get; set; }
         public Status Status { get; set; }
 
-        public int ListaDeTarefaId { get; set; }
+        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int ListaDeTarefaId { get; private set; }
         [ForeignKey("ListaDeTarefaId")]
-        public ListaDeTarefa ListaDeTarefa { get; set; }
+        public ListaDeTarefa ListaDeTarefa { get; private set; }
     }
 }

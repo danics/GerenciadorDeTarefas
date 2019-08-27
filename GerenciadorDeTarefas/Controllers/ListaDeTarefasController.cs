@@ -38,20 +38,22 @@ namespace GerenciadorDeTarefas.Controllers
 
         [HttpPost]
         public async Task<IActionResult> Create(ListaDeTarefaViewModel listaDeTarefaviewModel)
-        {           
+        {
+            ViewData["listas"] = _context.ListaDeTarefas.ToList();
             var lista = _mapper.Map<ListaDeTarefa>(listaDeTarefaviewModel);
             await _context.ListaDeTarefas.AddAsync(lista);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        public ActionResult Edit(int Id)
-        {            
+        public IActionResult Edit(int Id)
+        {
+            ViewData["listas"] = _context.ListaDeTarefas.ToList();
             var tarefas = _context.ListaDeTarefas.Find(Id);           
             if(tarefas.Tarefas == null)
             {
                 tarefas.Tarefas = new List<Tarefa>();               
-            }    
+            }   
             
             return View(_mapper.Map<ListaDeTarefaViewModel>(tarefas));
         }
