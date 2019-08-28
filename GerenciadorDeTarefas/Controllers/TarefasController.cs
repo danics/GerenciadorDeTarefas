@@ -42,10 +42,10 @@ namespace GerenciadorDeTarefas.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> EditarTarefa(int Id)
+        public async Task<IActionResult> EditarTarefa(int id)
         {
             ViewData["listas"] = _context.ListaDeTarefas.ToList();
-            var tarefa = await _context.Tarefas.FindAsync(Id);
+            var tarefa = await _context.Tarefas.FindAsync(id);
             return View(_mapper.Map<TarefaViewModel>(tarefa));
         }
         
@@ -56,6 +56,24 @@ namespace GerenciadorDeTarefas.Controllers
             _context.Tarefas.Update(_mapper.Map<Tarefa>(tarefaViewModel));
             await _context.SaveChangesAsync();
             return RedirectToAction("Edit", "ListaDeTarefas", new { id = tarefaViewModel.ListaDeTarefaId });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            ViewData["listas"] = _context.ListaDeTarefas.ToList();
+            var tarefa = await _context.Tarefas.FindAsync(id);
+            return View(_mapper.Map<TarefaViewModel>(tarefa));
+            //new TarefaViewModel { ListaDeTarefaId = listadetarefaId }
+        }
+
+        public async Task<IActionResult> Delete(TarefaViewModel tarefaViewModel)
+        {
+            ViewData["listas"] = _context.ListaDeTarefas.ToList();
+            var idlistaDeTarefa = tarefaViewModel.ListaDeTarefaId;
+            _context.Tarefas.Remove(_mapper.Map<Tarefa>(tarefaViewModel));
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Edit", "ListaDeTarefas", new { id = idlistaDeTarefa });
         }
     }
 }

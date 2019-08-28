@@ -53,7 +53,7 @@ namespace GerenciadorDeTarefas.Controllers
             if(tarefas.Tarefas == null)
             {
                 tarefas.Tarefas = new List<Tarefa>();               
-            }   
+            } 
             
             return View(_mapper.Map<ListaDeTarefaViewModel>(tarefas));
         }
