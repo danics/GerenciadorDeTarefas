@@ -49,7 +49,7 @@ namespace GerenciadorDeTarefas.Controllers
         public IActionResult Edit(int Id)
         {
             ViewData["listas"] = _context.ListaDeTarefas.ToList();
-            var tarefas = _context.ListaDeTarefas.Find(Id);           
+            var tarefas = _context.ListaDeTarefas.Include(x => x.Tarefas).Where(x => x.Id == Id).FirstOrDefault();           
             if(tarefas.Tarefas == null)
             {
                 tarefas.Tarefas = new List<Tarefa>();               

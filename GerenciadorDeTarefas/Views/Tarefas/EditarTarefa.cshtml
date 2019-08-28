@@ -1,19 +1,22 @@
 ﻿@model GerenciadorDeTarefas.Models.ViewModels.TarefaViewModel
+@using GerenciadorDeTarefas.Models.Enuns
 
 @{
-    ViewData["Title"] = "Tarefas";
+    ViewData["Title"] = "EditarTarefas";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <!DOCTYPE html>
 
 <html>
 <body>
-    <h4>Tarefas</h4>
+    <h4>Editar Tarefas</h4>
     <hr />
     <div class="row">
         <div class="col-md-4">
             <form asp-action="Tarefa">
                 @Html.HiddenFor(x => x.ListaDeTarefaId)
+                @Html.HiddenFor(x => x.Id)
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
                     <label asp-for="Descricao" class="control-label"></label>
@@ -21,14 +24,15 @@
                     <span asp-validation-for="Descricao" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="Nova Tarefa" class="btn btn-primary" />
+                    <label asp-for="Status" class="control-label"></label>
+                    <select asp-for="Status" asp-items="@Html.GetEnumSelectList<Status>()" class="custom-select"> </select>
+                    <span asp-validation-for="Status" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Salvar" class="btn btn-primary" />
                 </div>
             </form>
         </div>
-    </div>
-
-    <div>
-        <a asp-action="Edit">Voltar</a>
     </div>
 </body>
 </html>
