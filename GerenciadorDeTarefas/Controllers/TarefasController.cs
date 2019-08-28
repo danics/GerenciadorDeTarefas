@@ -63,8 +63,7 @@ namespace GerenciadorDeTarefas.Controllers
         {
             ViewData["listas"] = _context.ListaDeTarefas.ToList();
             var tarefa = await _context.Tarefas.FindAsync(id);
-            return View(_mapper.Map<TarefaViewModel>(tarefa));
-            //new TarefaViewModel { ListaDeTarefaId = listadetarefaId }
+            return View(_mapper.Map<TarefaViewModel>(tarefa));            
         }
 
         public async Task<IActionResult> Delete(TarefaViewModel tarefaViewModel)
