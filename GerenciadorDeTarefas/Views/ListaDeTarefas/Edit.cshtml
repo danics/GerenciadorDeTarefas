@@ -4,16 +4,15 @@
     ViewData["Title"] = "Tarefas";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<p>
-<a asp-action="Tarefa" asp-controller="Tarefas" asp-route-listadetarefaId="@Model.Id" class="btn btn-primary">Nova Tarefa</a>
-</p>
+<h3>@Model.Nome</h3>
 
 @if (Model.Tarefas.Count == 0)
-{    
+{
     <p>Ainda não existem tarefas nesta lista</p>
 }
 else
-{<tbody>
+{
+    <tbody>
         @foreach (var item in Model.Tarefas)
         {
             <tr>
@@ -24,7 +23,10 @@ else
                     <a asp-action="Delete" asp-controller="Tarefas" asp-route-id="@item.Id">Excluir</a>
                 </td>
             </tr>
-            <br/>
+            <br />
         }
     </tbody>
 }
+<br />
+    <a asp-action="Tarefa" asp-controller="Tarefas" asp-route-listadetarefaId="@Model.Id" class="btn btn-primary">Nova Tarefa</a>
+    <a asp-action="Delete" asp-controller="ListaDeTarefas" asp-route-Id="@Model.Id" class="btn btn-danger">Excluir Lista</a>

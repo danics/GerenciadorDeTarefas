@@ -25,18 +25,18 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow @(@User.Identity.IsAuthenticated ? "mb-3" : "")">
             @if (User.Identity.IsAuthenticated)
             {
-                <octicon symbol="ThreeBars" id="sidebarCollapse" class="burger"></octicon>
+                <octicon symbol="ThreeBars" id="sidebarCollapse" class="burger"></octicon>               
             }
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">To-Do</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <partial name="_LoginPartial" />                    
+                <div class="container">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">To-Do</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>                   
+                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                        <partial name="_LoginPartial" />
+                    </div>
                 </div>
-            </div>
         </nav>
     </header>
     @if (User.Identity.IsAuthenticated)
@@ -69,11 +69,13 @@
         </div>
     }
     else
-    {
-        <partial name="_CookieConsentPartial" />
+    {        
+        <div class="container">
+             <partial name="_CookieConsentPartial" />
         <main role="main">
             @RenderBody()
         </main>
+        </div>
     }
 
     <footer class="border-top footer text-muted">
