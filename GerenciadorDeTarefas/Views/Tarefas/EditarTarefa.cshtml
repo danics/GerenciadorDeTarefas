@@ -14,9 +14,9 @@
     <hr />
     <div class="row">
         <div class="col-md-4">
-            <form asp-action="Tarefa">
+            <form asp-action="EditarTarefa">
                 @Html.HiddenFor(x => x.ListaDeTarefaId)
-                @Html.HiddenFor(x => x.Id)
+               
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
                     <label asp-for="Descricao" class="control-label"></label>

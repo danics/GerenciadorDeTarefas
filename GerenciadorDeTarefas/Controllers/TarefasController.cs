@@ -25,7 +25,7 @@ namespace GerenciadorDeTarefas.Controllers
 
         [HttpGet]
         [Route("/ListaDeTarefas/{listadetarefaId}/Tarefas") ]
-        public IActionResult Tarefa(int listadetarefaId)
+        public IActionResult CriaTarefa(int listadetarefaId)
         {
             ViewData["listas"] = _context.ListaDeTarefas.ToList();            
             return View(new TarefaViewModel { ListaDeTarefaId = listadetarefaId });
@@ -33,7 +33,7 @@ namespace GerenciadorDeTarefas.Controllers
 
         [HttpPost]
         [Route("/ListaDeTarefas/{listadetarefaId}/Tarefas")]
-        public async Task<IActionResult> Tarefa(TarefaViewModel tarefaViewModel)
+        public async Task<IActionResult> CriaTarefa(TarefaViewModel tarefaViewModel)
         {
             ViewData["listas"] = _context.ListaDeTarefas.ToList();
             _context.Tarefas.Add(_mapper.Map<Tarefa>(tarefaViewModel));
