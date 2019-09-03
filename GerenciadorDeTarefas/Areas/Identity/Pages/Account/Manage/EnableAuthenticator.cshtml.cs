@@ -148,7 +148,7 @@ namespace GerenciadorDeTarefas.Areas.Identity.Pages.Account.Manage
         {
             return string.Format(
                 AuthenticatorUriFormat,
-                _urlEncoder.Encode("GerenciadorDeTarefas"),
+                _urlEncoder.Encode("2FA Teste"),
                 _urlEncoder.Encode(email),
                 unformattedKey);
         }
