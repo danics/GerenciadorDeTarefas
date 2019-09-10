@@ -4,7 +4,7 @@
     ViewData["Title"] = "Tarefas";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h3>@Model.Nome</h3>
+<h1>@Model.Nome</h1>
 
 @if (Model.Tarefas.Count == 0)
 {
@@ -12,22 +12,22 @@
 }
 else
 {
-    <tbody>
-        @foreach (var item in Model.Tarefas)
-        {
-            <tr>
-                <td> @item.Descricao </td>
-                <br />
-                <td> @item.Status </td>
-                <td>
-                    <a asp-action="EditarTarefa" asp-controller="Tarefas" asp-route-id="@item.Id" class="btn btn-light">Editar</a> |
-                    <a asp-action="Delete" asp-controller="Tarefas" asp-route-id="@item.Id" class="btn btn-light">Excluir</a>
-                </td>
-            </tr>
-            <br />
-        }
-    </tbody>
+    <div class="row">
+        <div class="col-6">Descricao</div> <div class="col-4">Status</div> <div class="col-2">Ação</div>
+    </div>
+
+    @foreach (var item in Model.Tarefas)
+    {
+        <div class="row">
+            <div class="col-6"> @item.Descricao</div>
+            <div class="col-4">@item.Status</div>
+            <div class="col-2">
+                <a asp-action="EditarTarefa" asp-controller="Tarefas" asp-route-id="@item.Id" class="btn btn-light">Editar</a> |
+                <a asp-action="Delete" asp-controller="Tarefas" asp-route-id="@item.Id" class="btn btn-light">Excluir</a>
+            </div>
+        </div>
+    }
 }
 <br />
-    <a asp-action="CriaTarefa" asp-controller="Tarefas" asp-route-listadetarefaId="@Model.Id" class="btn btn-primary">Nova Tarefa</a>
-    <a asp-action="Delete" asp-controller="ListaDeTarefas" asp-route-Id="@Model.Id" class="btn btn-danger">Excluir Lista</a>
+<a asp-action="CriaTarefa" asp-controller="Tarefas" asp-route-listadetarefaId="@Model.Id" class="btn btn-primary">Nova Tarefa</a>
+<a asp-action="Delete" asp-controller="ListaDeTarefas" asp-route-Id="@Model.Id" class="btn btn-danger">Excluir Lista</a>
